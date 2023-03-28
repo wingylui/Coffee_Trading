@@ -11,9 +11,9 @@ Based on the coffee project [(Top Quality Coffee Bean Production Chain)](https:/
 <b>API:</b> flask, jsonify
 <b>data visualisation:</b> leaflet and ploty, still finding a new JS library
 
----
 
-Planning Data Visualisation:
+---
+### Planning Data Visualisation:
 
 Hopefully, will have a main menu that asking user want to see:
 - the different information (import, export, consumption etc.) from a few selected country throughout multiple years or,
@@ -21,12 +21,16 @@ Hopefully, will have a main menu that asking user want to see:
 Also, in the world map, there will be a toggle about where are top quality coffee bean grow, and the roaster location.
 
 ```mermaid
-flowchart LR
-menu --> id1{{world map}} --> sub1{{import, export, consumption info within a single year}} --> sub2{{click the country: show the changes throughout years}}
+flowchart TB
+menu --> id1{{world map}} --> sub1{{import, export, consumption info within a year}} --> sub2{{hover to a country show changes throughtout years}}
 id1{{world map}} --> sub3{{toggle: show top quality coffee grow and roaster location}}
 menu --> id2{{dashboard}} --> sub4{{import, export, consumption info from selected country throughtout mutliple years}}
 ```
-
+---
+### Time planning:
+- 28-1/4 finishing data clean and but in json format
+- 1-4/4 finishing API build up
+- 4-11/4 build up the interactive dashboard Javascript 
 
 ---
 ### Reference:
