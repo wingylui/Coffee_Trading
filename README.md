@@ -22,9 +22,9 @@ Also, in the world map, there will be a toggle about where are top quality coffe
 
 ```mermaid
 flowchart TB
-menu --> id1{{world map}} --> sub1{{import, export, consumption info within a year}} --> sub2{{hover to a country show changes throughtout years}}
+menu --> id1{{world map}} --> sub1{{info within a year}} --> sub2{{hover to a country: changes throughtout years}}
 id1{{world map}} --> sub3{{toggle: show top quality coffee grow and roaster location}}
-menu --> id2{{dashboard}} --> sub4{{import, export, consumption info from selected country throughtout mutliple years}}
+menu --> id2{{dashboard}} --> sub4{{info in different years from selected countries}}
 ```
 ---
 ### Time planning:
