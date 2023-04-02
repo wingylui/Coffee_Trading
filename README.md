@@ -24,6 +24,7 @@ Also, in the world map, there will be a toggle about where are top quality coffe
 flowchart TB
 menu --> id1{{world map}} --> sub1{{info within a year}} --> sub2{{hover to a country: changes throughtout years}}
 id1{{world map}} --> sub3{{toggle: show top quality coffee grow and roaster location}}
+id1{{world map}} --> sub5{{toggle: show }}
 menu --> id2{{dashboard}} --> sub4{{info in different years from selected countries}}
 ```
 ---
