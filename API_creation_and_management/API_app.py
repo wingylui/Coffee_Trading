@@ -389,13 +389,16 @@ def farmer_recevied():
     return jsonify(final_json)
       
 
-@app.rounte("map/top_quality_coffee")
+@app.route("/dashboard/top_quality_coffee")
 def top_quality_coffee():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
-
     # label all the collections into different variables
-    top_coffee = mongo.coffee_trading.top_quality_coffee
+    dashboard_data = mongo.coffee_trading.dashboard_graph
+    for results in dashboard_data.find({},{"_id" : 0}):
+        dashboard = results
+    
+    return jsonify(dashboard)
 
 
 # allow using debug mode so continuously updating the web page
