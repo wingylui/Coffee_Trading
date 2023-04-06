@@ -1,7 +1,9 @@
 # import MongoClient
 from pymongo import MongoClient
 import numpy as np
-from flask import Flask, jsonify
+from flask import Flask, jsonify, make_response
+from flask_cors import CORS, cross_origin
+
 
 
 # creating a function for popup graph in the map
@@ -25,8 +27,28 @@ mongo = MongoClient(port = 27017)
 
 # Crete an app
 app = Flask(__name__)
+# CORS(app)
+
+
+@app.route("/")
+def home():
+    return (
+        "<h1>Home Page</h1>"
+        "Available Routes:<br/>"
+        "/map/production</br>"
+        "/map/import</br>"
+        "/map/export</br>"
+        "/map/retail_price</br>"
+        "/map/re-export</br>"
+        "/trade_popup/<country_name></br>"
+        "/dashboard/farmer_received</br>"
+        "/dashboard/top_quality_coffee/all</br>"
+        "/dashboard/top_quality_coffee/high_rated</br>"
+        "/dashboard/top_quality_coffee/low_price</br>"
+    )
 
 @app.route("/map/production")
+@cross_origin()
 def production_country():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -54,13 +76,13 @@ def production_country():
         properties = {}
 
         # storing variables into properites dic
-        properties["Country Name"] = country_in_table
+        properties["CountryName"] = country_in_table
         properties["units"] = "In thousand 60kg bags"
         
         # query all the data from 1990 to 2019
         years = np.arange(1990,2020)
         for year in years:
-            properties[str(year)] = production_results[str(year)]
+            properties["y" + str(year)] = str(production_results[str(year)])
             
 
         # put all the data from properties array into the feature list
@@ -77,10 +99,13 @@ def production_country():
     # create geojson file
     geojson_file = {"type": "FeatureCollection", "features" : features}
 
+    # response = make_response(jsonify(geojson_file))
+    # response.headers["Access-Control-Allow-Origin"] = "*"
     return jsonify(geojson_file)
 
 
 @app.route("/map/import")
+@cross_origin()
 def import_counctry():
     
     # Create an instance of MongoClient
@@ -109,7 +134,7 @@ def import_counctry():
         properties = {}
 
         # storing variables into properites dic
-        properties["Country Name"] = country_in_table
+        properties["CountryName"] = country_in_table
         properties["units"] = "In thousand 60kg bags"
         
         # query all the data from 1990 to 2019
@@ -132,6 +157,7 @@ def import_counctry():
     return jsonify(geojson_file)
 
 @app.route("/map/export")
+@cross_origin()
 def export_country():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -158,7 +184,7 @@ def export_country():
         properties = {}
 
         # storing variables into properites dic
-        properties["Country Name"] = country_in_table
+        properties["CountryName"] = country_in_table
         properties["units"] = "In thousand 60kg bags"
         
         # query all the data from 1990 to 2019
@@ -182,6 +208,7 @@ def export_country():
 
 
 @app.route("/map/retail_price")
+@cross_origin()
 def retail_price():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -208,13 +235,13 @@ def retail_price():
         properties = {}
 
         # storing variables into properites dic
-        properties["Country Name"] = country_in_table
+        properties["CountryName"] = country_in_table
         properties["units"] = "US cents per lb"
         
         # query all the data from 1990 to 2019
         years = np.arange(1990,2020)
         for year in years:
-            properties[str(year)] = price_results[str(year)]
+            properties["y" + str(year)] = price_results[str(year)]
         # put all the data from properties array into the feature list
         dic_in_feature["properties"] = properties
         
@@ -232,6 +259,7 @@ def retail_price():
 
 
 @app.route("/map/re-export")
+@cross_origin()
 def reexport():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -258,7 +286,7 @@ def reexport():
         properties = {}
 
         # storing variables into properites dic
-        properties["Country Name"] = country_in_table
+        properties["CountryName"] = country_in_table
         properties["units"] = "In thousand 60kg bags"
         
         # query all the data from 1990 to 2019
@@ -282,6 +310,7 @@ def reexport():
 
 
 @app.route("/trade_popup/<country_name>")
+@cross_origin()
 def dashboard_country(country_name):
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -335,6 +364,7 @@ def dashboard_country(country_name):
 
 
 @app.route("/dashboard/farmer_received")
+@cross_origin()
 def farmer_recevied():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
@@ -389,12 +419,38 @@ def farmer_recevied():
     return jsonify(final_json)
       
 
-@app.route("/dashboard/top_quality_coffee")
-def top_quality_coffee():
+@app.route("/dashboard/top_quality_coffee/all")
+@cross_origin()
+def top_quality_coffee_all():
     # Create an instance of MongoClient
     mongo = MongoClient(port = 27017)
     # label all the collections into different variables
-    dashboard_data = mongo.coffee_trading.dashboard_graph
+    dashboard_data = mongo.coffee_trading.dashboard_graph_all
+    for results in dashboard_data.find({},{"_id" : 0}):
+        dashboard = results
+    
+    return jsonify(dashboard)
+
+@app.route("/dashboard/top_quality_coffee/high_rated")
+@cross_origin()
+def top_quality_coffee_high_rated():
+    # Create an instance of MongoClient
+    mongo = MongoClient(port = 27017)
+    # label all the collections into different variables
+    dashboard_data = mongo.coffee_trading.dashboard_graph_high_rated
+    for results in dashboard_data.find({},{"_id" : 0}):
+        dashboard = results
+    
+    return jsonify(dashboard)
+
+
+@app.route("/dashboard/top_quality_coffee/low_price")
+@cross_origin()
+def top_quality_coffee_low_price():
+    # Create an instance of MongoClient
+    mongo = MongoClient(port = 27017)
+    # label all the collections into different variables
+    dashboard_data = mongo.coffee_trading.dashboard_graph_low_price
     for results in dashboard_data.find({},{"_id" : 0}):
         dashboard = results
     

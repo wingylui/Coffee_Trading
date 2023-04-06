@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Top Quality Coffee</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <!-- Our CSS -->
+        <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+    </head>
+    
+    <body>
+        
+        <header class="header">
+            <p class="header-text"><b>Coffee Research</b></p>
+            <div class="buttons">
+                <button id="famerButton" onclick="retailFarmer()">Farmer Received</button>
+                <button id="qualityCOffee" onclick="topQualityCoffee()">Top Quality Coffee</button>
+            </div>
+        </header>
+        <div id="topCoffee">
+            <div class="main">
+                <div class="card">
+                    <div class="dropdown">
+                        <h5>Choose One:</h5>
+                        <select id="selDataset" onchange="optionChanged(this.value)">
+                            <option>All</option>
+                            <option>High Rated</option>
+                            <option>Best in Values</option>
+                        </select>
+                    </div>  
+                </div>
+                <div class="card">
+                    <div id="origin-country"></div>
+                </div>
+                <div class="card">
+                    <div id="roast-level"></div>
+                </div>
+                <div class="card">
+                    <div id="speices"></div>
+                </div>
+                <div class="card">
+                    <div id="price"></div>
+                </div>
+                <div class="card">
+                    <div id="roaster-country"></div>
+                </div>
+            </div>
+        </div>
+        <div id="growerGet">
+            <div id="retail-farmer"></div>
+        </div>
+
+
+        <script src="../js/dashboard.js"></script>
+        <script src="https://d3js.org/d3.v5.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    </body>
+</html>

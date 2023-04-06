@@ -131,3 +131,6 @@ dmypy.json
 # add file
 .DS_Store
 test.ipynb
+test1.html
+test1.css
+test.js
