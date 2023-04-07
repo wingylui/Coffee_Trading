@@ -62,7 +62,7 @@ d3.json(productionURL).then(function(data) {
         // query out the data for production and export data for that country through API
         d3.json(graphURL).then(function(graphdata){
 
-          exportgraph(graphdata); // line plot
+          exportgraph(graphdata, features.properties.CountryName); // line plot
       })
     })
   }}).addTo(productionLayer); // adding to the layer
@@ -95,7 +95,7 @@ d3.json(importURL).then(function(data) {
         // query out the data for import and reexport data for that country through API
         d3.json(graphURL).then(function(graphdata){
           // setting up the line graph using plotly
-          importgraph(graphdata);
+          importgraph(graphdata, features.properties.CountryName);
       })
     })
   }}).addTo(importLayer); // adding to the layer
@@ -129,7 +129,7 @@ d3.json(exportURL).then(function(data) {
         // query out the data for production and export data for that country through API
         d3.json(graphURL).then(function(graphdata){
           // setting up the line graph using plotly
-          exportgraph(graphdata);
+          exportgraph(graphdata, features.properties.CountryName);
       })
     })
   }}).addTo(exportLayer); // adding to the layer
@@ -162,7 +162,7 @@ d3.json(reExportURL).then(function(data) {
         // query out the data for production and export data for that country through API
         d3.json(graphURL).then(function(graphdata){
           // setting up the line graph using plotly
-          importgraph(graphdata);
+          importgraph(graphdata, features.properties.CountryName);
       })
     })
   }}).addTo(reExportLayer); // adding to the layer
@@ -209,7 +209,7 @@ function legendControl(legend, titleName){
 
 
  
-function exportgraph (data) {
+function exportgraph (data, country) {
   // setting up the line graph using plotly
   var productionLine = {
     x: data.TotalProduction.years,
@@ -221,12 +221,12 @@ function exportgraph (data) {
     y: data.Export.values,
     mode: "lines+markers",
     name: "Export"}; // export line
-  var layout =  {width: 600, height: 450};
+  var layout =  {width: 600, height: 450, title: country};
   
   Plotly.newPlot('foo', [productionLine, exportLine], layout);  
 }
 
-function importgraph (data) {
+function importgraph (data, country) {
   var importLine = {
     x: data.Import.years,
     y: data.Import.values,
@@ -237,7 +237,7 @@ function importgraph (data) {
     y: data.ReExport.values,
     mode: "lines+markers",
     name: "Re-Export"}; // reexport line
-  var layout =  {width: 600, height: 450};
+  var layout =  {width: 600, height: 450, title: country};
   // trying with there is consumption data, if not, then only plot the import and reexport data
   try {
     var ConsumptionLine = {
