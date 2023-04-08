@@ -1,1 +1,115 @@
-[{"total_number": "34", "price": {"PriceRangeUSD_kg": ["$10 - $15", "$15 - $20", "$20 - $25", "$25 - $30", "$30 - $35"], "low_price": [3, 4, 2, 7, 18]}, "rating": {"coffee_rating": [94, 95, 96], "low_price": [23, 10, 1]}, "species": {"species": ["Catimor", "Catuai", "Mundo Novo", "Java", "Landrace", "Heirloom", "Typica", "Bourbon"], "low_price": [1, 1, 1, 2, 2, 3, 3, 5]}, "roast_level": {"roast_level": ["Dark", "Light", "Medium", "Medium-Dark", "Medium-Light"], "low_price": [0, 2, 12, 1, 13]}, "origin_country": {"coffee_origin_country": ["Costa Rica", "Nicaragua", "Not disclosed", "United Republic of Tanzania", "Brazil", "Colombia", "El Salvador", "Kenya", "Guatemala", "Indonesia", "Ethiopia"], "low_price": [1, 2, 2, 2, 3, 3, 3, 3, 6, 6, 15]}, "roaster": {"roaster_country": ["China", "Greece", "South Korea", "Canada", "United States of America", "Taiwan"], "low_price": [1, 1, 1, 4, 13, 14]}}]
+{
+    "origin_country": {
+      "coffee_origin_country": [
+        "Ethiopia", 
+        "Guatemala", 
+        "Indonesia", 
+        "Brazil", 
+        "Colombia", 
+        "El Salvador", 
+        "Kenya", 
+        "Nicaragua", 
+        "Not disclosed", 
+        "United Republic of Tanzania", 
+        "Costa Rica"
+      ], 
+      "low_price": [
+        15, 
+        6, 
+        6, 
+        3, 
+        3, 
+        3, 
+        3, 
+        2, 
+        2, 
+        2, 
+        1
+      ]
+    }, 
+    "price": {
+      "PriceRangeUSD_kg": [
+        "$10 - $15", 
+        "$15 - $20", 
+        "$20 - $25", 
+        "$25 - $30", 
+        "$30 - $35"
+      ], 
+      "low_price": [
+        3, 
+        4, 
+        2, 
+        7, 
+        18
+      ]
+    }, 
+    "rating": {
+      "coffee_rating": [
+        94, 
+        95, 
+        96
+      ], 
+      "low_price": [
+        23, 
+        10, 
+        1
+      ]
+    }, 
+    "roast_level": {
+      "low_price": [
+        0, 
+        2, 
+        12, 
+        1, 
+        13
+      ], 
+      "roast_level": [
+        "Dark", 
+        "Light", 
+        "Medium", 
+        "Medium-Dark", 
+        "Medium-Light"
+      ]
+    }, 
+    "roaster": {
+      "low_price": [
+        14, 
+        13, 
+        4, 
+        1, 
+        1, 
+        1
+      ], 
+      "roaster_country": [
+        "Taiwan", 
+        "United States of America", 
+        "Canada", 
+        "China", 
+        "Greece", 
+        "South Korea"
+      ]
+    }, 
+    "species": {
+      "low_price": [
+        5, 
+        3, 
+        3, 
+        2, 
+        2, 
+        1, 
+        1, 
+        1
+      ], 
+      "species": [
+        "Bourbon", 
+        "Heirloom", 
+        "Typica", 
+        "Java", 
+        "Landrace", 
+        "Catimor", 
+        "Catuai", 
+        "Mundo Novo"
+      ]
+    }, 
+    "total_number": "34"
+  }
