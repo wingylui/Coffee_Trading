@@ -6,7 +6,7 @@ function topQualityCoffee() {
     const allCoffeeURL = "https://raw.githubusercontent.com/wingylui/coffee_trading_API/main/dashboard/top_quality_coffee/all";
     d3.json(allCoffeeURL).then(function(data){
         plotGraph(data, "all");
-        
+        d3.select("#info>h4").text("All High Quality Coffee (Scored 94+)").style("color","rgb(107, 54, 38)");
     })
 }
 
@@ -14,17 +14,23 @@ function optionChanged(input){
     if (input == "All") {
         const allCoffeeURL = "https://raw.githubusercontent.com/wingylui/coffee_trading_API/main/dashboard/top_quality_coffee/all";
         d3.json(allCoffeeURL).then(function(data){
-            plotGraph(data, "all");})
+            plotGraph(data, "all");
+            // d3.select("#info").attr("h4").remove();
+            d3.select("#info>h4").text("All High Quality Coffee (Scored 94+)").style("color","rgb(107, 54, 38)")});
     }
     else if (input == "High Rated"){
         const highRatedCoffeeURL = "https://raw.githubusercontent.com/wingylui/coffee_trading_API/main/dashboard/top_quality_coffee/high_rated.json";
         d3.json(highRatedCoffeeURL).then(function(data){
-            plotGraph(data, "high_rated");})
+            plotGraph(data, "high_rated");
+            // d3.select("#info").attr("h4").remove();
+            d3.select("#info>h4").text("Very High Quality Coffee (Scored 97+)").style("color","rgb(107, 54, 38)")});
     }
     else{
         const lowPriceCoffeeURL = "https://raw.githubusercontent.com/wingylui/coffee_trading_API/main/dashboard/top_quality_coffee/low_price.json";
         d3.json(lowPriceCoffeeURL).then(function(data){
-        plotGraph(data, "low_price");})
+        plotGraph(data, "low_price");
+        // d3.select("#info").attr("h4").remove();
+        d3.select("#info>h4").text("Coffee Retail Price less than USD $35/kg").style("color","rgb(107, 54, 38)")});
     };
 }
 
@@ -56,7 +62,6 @@ function retailFarmer(){
 
     const retailFarmerURL = "https://raw.githubusercontent.com/wingylui/coffee_trading_API/main/dashboard/farmer_received.json";
     d3.json(retailFarmerURL).then(function(data){
-        console.log(data);
         var retailPrice ={
             x: data.GrowerReceivedMean.years,
             y: data.RetailPriceMean.values,
@@ -96,22 +101,20 @@ function retailFarmer(){
             name : "Bean Cost (line of best fit)"};
           
           var layout = {
-            title: "Global Average Coffee Bean Price - Retail vs Farmer",
+            title: {text: "Global Average Coffee Bean Price - Retail vs Farmer", font: {size: "27"}},
             paper_bgcolor: "#f9f4e6",
             plot_bgcolor: "#d8bd9d97",
-            margin:{
-                pad: 10
-            },
+            margin:{pad: 10},
+            xaxis:{automargin: true, title:{text: "Years", standoff: 10, font: {size:18}}},
+            yaxis:{automargin: true, title:{text: "Price (US cents/lb)", standoff: 10, font: {size:18}}},
             width: 1400,
-            height: 700
-          };
+            height: 700};
           
           Plotly.newPlot("retail-farmer", [retailPrice, LBF_Retail, growerReceived, LBF_Farmer], layout);
     });}
 
 
 function plotGraph(dataSet, key){
-    console.log(dataSet);
     // species data
     var speciesBarTrace = [{
         x: dataSet.species[key],
@@ -131,7 +134,7 @@ function plotGraph(dataSet, key){
     var speciesBarLayout = {
         showlegend: false,
         height: 480,
-        width: 280,
+        width: 330,
         margin: {
             b: 30,
             l: 80,
@@ -139,7 +142,8 @@ function plotGraph(dataSet, key){
             t: 60},
         paper_bgcolor: "rgba(0, 0, 0, 0)",
         plot_bgcolor: "rgba(0, 0, 0, 0)",
-        title: "Species"
+        title: "Species",
+        xaxis:{automargin: true, title:{text: "Counts", standoff: 10}}
     };
 
     // plot bar chart
@@ -201,7 +205,8 @@ function plotGraph(dataSet, key){
             t: 60},
         paper_bgcolor: "rgba(0, 0, 0, 0)",
         plot_bgcolor: "rgba(0, 0, 0, 0)",
-        title: "Coffee Origin Country"
+        title: "Coffee Origin Country",
+        yaxis:{automargin: true, title:{text: "Counts", standoff: 5}}
     };
 
     // plot bar chart
@@ -235,7 +240,8 @@ function plotGraph(dataSet, key){
             pad: 5},
         paper_bgcolor: "rgba(0, 0, 0, 0)",
         plot_bgcolor: "rgba(0, 0, 0, 0)",
-        title: "Coffee Price"
+        title: "Coffee Price",
+        xaxis:{automargin: true, title:{text: "Counts", standoff: 14}}
     };
 
     // plot bar chart
@@ -261,13 +267,14 @@ function plotGraph(dataSet, key){
         height: 400,
         width: 650,
         margin: {
-            b: 100,
+            b: 90,
             l: 50,
             r: 25,
             t: 60}, // changing margin size
         paper_bgcolor: "rgba(0, 0, 0, 0)",
         plot_bgcolor: "rgba(0, 0, 0, 0)", // transparent background
-        title: "Coffee Roaster Country"
+        title: "Coffee Roaster Country",
+        yaxis:{automargin: true, title:{text: "Counts", standoff: 1}}
     };
 
     // plot bar chart
