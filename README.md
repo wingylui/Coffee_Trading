@@ -89,12 +89,20 @@ Each section can be toggle on and off by the user and the legend will be switch 
 - <b>Pop-up line graph for each country:</b></br>
 Once the user click on a country, detail information from 1990 to 2019 of import/consumption/re-export or production/export will be displayed automatically.
 
+
 ### Dashboard
 Two sub-selections were in this section:
 - <b>Global average of bean selling price by farmer and retail price</b> </br>
-This section displayed the retail price and bean selling price by farmer throughout 1990 to 2019. The results suggesting that the bean selling price and retail price have increased approximately 2.5x and 7.5x, respectively.
+This section displayed the retail price and bean selling price by farmer throughout 1990 to 2019. The results suggesting that the bean selling price and retail price have increased approximately 2.5x and 7.5x, respectively.</br>
+Example:</br>
+![Dashboard](https://github.com/wingylui/Coffee_Trading/blob/main/web/image/dashboard.png)
+
 - <b>Top Quality Coffee:</b></br>
 This section investigated the regions/locations and coffee plant species that produced high quality coffee. The retail price and the roast level also been reviewed. Coffee beans that are high-rated (scored more than 97) mainly growed in Panama and from the Geisha species, and roasted in US. Although the pricing of most of the high quality coffee are quite expensive, there are still 34 of them are under USD $35/kg. Most of the affordable high quality coffee are from Ethiopia and roasted in Taiwan or US.</br>
+Example:</br>
+![Map](https://github.com/wingylui/Coffee_Trading/blob/main/web/image/map.png)
+
+
 
 For more detail, please go to [this website](https://wingylui.github.io/Coffee_Trading/).
 
