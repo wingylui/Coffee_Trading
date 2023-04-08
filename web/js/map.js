@@ -215,13 +215,19 @@ function exportgraph (data, country) {
     x: data.TotalProduction.years,
     y: data.TotalProduction.values,
     mode: "lines+markers",
-    name: "Total Production"}; // production line
+    name: "Total Production",
+    line: {color: "#174FBF", width: 3},
+    marker: {color:"#174FBF", size: 6}}; // production line
   var exportLine = {
     x: data.Export.years,
     y: data.Export.values,
     mode: "lines+markers",
-    name: "Export"}; // export line
-  var layout =  {width: 600, height: 450, title: country};
+    name: "Export",
+    line: {color: "#FFA019", width: 3},
+    marker: {color:"#FFA019", size: 6}}; // export line
+  var layout =  {width: 600, height: 450, title: country, margin:{l:30, r:30, b: 30, t:70},
+    yaxis: {automargin: true, title:{text: "Thousands 60kg bags",standoff: 5}, constraintoward: "bottom"}, 
+    xaxis: {automargin: true, title:{text: "Years", standoff: 5}, constraintoward: "left"}};
   
   Plotly.newPlot('foo', [productionLine, exportLine], layout);  
 }
@@ -231,20 +237,28 @@ function importgraph (data, country) {
     x: data.Import.years,
     y: data.Import.values,
     mode: "lines+markers",
-    name: "Import"}; // import line
+    name: "Import",
+    line: {color: "#17771E", width: 3},
+    marker: {color:"#17771E", size: 6}}; // import line
   var reExportLine = {
     x: data.ReExport.years,
     y: data.ReExport.values,
     mode: "lines+markers",
-    name: "Re-Export"}; // reexport line
-  var layout =  {width: 600, height: 450, title: country};
+    name: "Re-Export",
+    line: {color: "#BC2E2E", width: 3},
+    marker: {color:"#BC2E2E", size: 6}}; // reexport line
+  var layout =  {width: 600, height: 450, title: country, margin:{l:30, r:30, b: 30, t:70},
+                yaxis: {automargin: true, title:{text: "Thousands 60kg bags",standoff: 5}, constraintoward: "bottom"}, 
+                xaxis: {automargin: true, title:{text: "Years", standoff: 5}, constraintoward: "left"}};
   // trying with there is consumption data, if not, then only plot the import and reexport data
   try {
     var ConsumptionLine = {
       x: data.Consumption.years,
       y: data.Consumption.values,
       mode: "lines+markers",
-      name: "Consumption"}; // consumption
+      name: "Consumption",
+      line: {color: "#2E99BC", width: 3},
+      marker: {color:"#2E99BC", size: 6}}; // consumption
     
     Plotly.newPlot('foo', [importLine, reExportLine, ConsumptionLine], layout); 
   }
