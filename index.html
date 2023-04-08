@@ -1,59 +1,54 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Top Quality Coffee</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <!-- Our CSS -->
-        <link rel="stylesheet" type="text/css" href="./web/css/dashboard.css">
-    </head>
+  <head>
+    <title>Homepage</title>
+    <style>
+      body{
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 250px 1fr;
+    grid-template-areas: 
+        "header"
+        "main";
+}
+
+.header-text {
+    color: rgb(107, 54, 38);
+    font-size: 60px;
+    margin-top: 20px; 
+    /* margin-left: 20px; */
+    /* margin-top: 0.45cm; */
+}
+
+.header{
+    background-color: #c6a787cf;
+    grid-area: header;
+    text-align: center;
+
+}
+.main{
+  padding: 50px;
+  grid-area: main;
+  background-color: #f9f4e6;
+}
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <h1 class="header-text">Coffee Research</h1>
+      <h1> Data Analytics Bootcamp Project 3 </h1>
+      <h1> Wing Lui</h1>
+    </header>
+    <main class="main">
+      <center>
+        <a href="web/html/map.html"><img src="web/image/map.png" width="500" height="300"></a>
+        <a href="web/html/dashboard.html"><img src="web/image/dashboard.png" width="500" height="300"></a>
+        <h1>11-04-2023</h1>
+      </center>
+
+      
+    </main>
     
-    <body>
-        
-        <header class="header">
-            <p class="header-text"><b>Coffee Dashboard</b></p>
-            <div class="buttons">
-                <button id="famerButton" onclick="retailFarmer()">Farmer Received</button>
-                <button id="qualityCOffee" onclick="topQualityCoffee()">Top Quality Coffee</button>
-            </div>
-        </header>
-        <div id="topCoffee">
-            <div class="main">
-                <div class="card">
-                    <div class="dropdown">
-                        <h5>Choose One:</h5>
-                        <select id="selDataset" onchange="optionChanged(this.value)">
-                            <option>All</option>
-                            <option>High Rated</option>
-                            <option>Best in Values</option>
-                        </select>
-                    </div>  
-                </div>
-                <div class="card">
-                    <div id="origin-country"></div>
-                </div>
-                <div class="card">
-                    <div id="roast-level"></div>
-                </div>
-                <div class="card">
-                    <div id="speices"></div>
-                </div>
-                <div class="card">
-                    <div id="price"></div>
-                </div>
-                <div class="card">
-                    <div id="roaster-country"></div>
-                </div>
-            </div>
-        </div>
-        <div id="growerGet">
-            <div id="retail-farmer"></div>
-        </div>
-
-
-        <script src="./web/js/dashboard_github_api.js"></script>
-        <script src="https://d3js.org/d3.v5.min.js"></script>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    </body>
+  </body>
 </html>
