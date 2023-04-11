@@ -52,7 +52,7 @@ d3.json(productionURL).then(function(data) {
     valueProperty: 'y2019', // which property in the features to use
     scale: ["#a1ccee", "#04379d"], // colour: blue
     steps: 15, // number of breaks 
-    mode: 'q', // q for quantile, e for equidistant, k for k-means
+    mode: 'e', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       layer.bindPopup('<div id="foo"></div>').on('popupopen', function (e) {
@@ -85,7 +85,7 @@ d3.json(importURL).then(function(data) {
     valueProperty: '2019', // which property in the features to use
     scale: ["#aaf6c6", "#07762c"], // colour: green
     steps: 15, // number of breaks 
-    mode: 'q', // q for quantile, e for equidistant, k for k-means
+    mode: 'e', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       layer.bindPopup('<div id="foo"></div>').on('popupopen', function (e) {
@@ -119,7 +119,7 @@ d3.json(exportURL).then(function(data) {
     valueProperty: '2019', // which property in the features to use
     scale: ["#f6ecbc", "#ec620e"], // colour: orange
     steps: 15, // number of breaks 
-    mode: 'q', // q for quantile, e for equidistant, k for k-means
+    mode: 'e', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       layer.bindPopup('<div id="foo"></div>').on('popupopen', function (e) {
@@ -151,7 +151,7 @@ d3.json(reExportURL).then(function(data) {
     valueProperty: '2019', // which property in the features to use
     scale: ["#f6bcbc", "#9d1414"], // colour: red
     steps: 15, // number of breaks 
-    mode: 'q', // q for quantile, e for equidistant, k for k-means
+    mode: 'e', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       // layer.bindPopup("<b>" + features.properties.y2019)
