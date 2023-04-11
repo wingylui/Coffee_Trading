@@ -49,7 +49,7 @@ d3.json(productionURL).then(function(data) {
     valueProperty: 'y2019', // which property in the features to use
     scale: ["#a1ccee", "#04379d"], // colour: blue
     steps: 15, // number of breaks 
-    mode: 'e', // q for quantile, e for equidistant, k for k-means
+    mode: 'q', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       layer.bindPopup('<div id="foo"></div>').on('popupopen', function (e) {
