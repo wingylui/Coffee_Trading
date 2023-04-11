@@ -1,4 +1,4 @@
-# Project 3: Coffee Research
+# Project 3: Global Coffee Trade Analysis and Outstanding coffee comparison
 
 ## Project Summary
 

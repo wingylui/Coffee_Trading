@@ -20,8 +20,6 @@ var baseMaps = {
   "Street Map": street
 };
 
-
-
 // create map
 finalMap = L.map("map", {
     center: [0,0], // the central position when first loaded into the map
@@ -29,6 +27,7 @@ finalMap = L.map("map", {
     layers: [street]
 });
 
+// creating overlayer to control the map toggle
 var overLays = {
   "Import" : importLayer,
   "Re-Export" : reExportLayer,
@@ -38,8 +37,6 @@ var overLays = {
 
 // add layer with only baseMaps
 L.control.layers(baseMaps, overLays).addTo(finalMap);
-
-
 
 
 // stating production url
@@ -52,7 +49,7 @@ d3.json(productionURL).then(function(data) {
     valueProperty: 'y2019', // which property in the features to use
     scale: ["#a1ccee", "#04379d"], // colour: blue
     steps: 15, // number of breaks 
-    mode: 'q', // q for quantile, e for equidistant, k for k-means
+    mode: 'e', // q for quantile, e for equidistant, k for k-means
     style: {color: '#fff', weight: 1, fillOpacity: 0.8}, // outline color and width
     onEachFeature: function(features, layer) {
       layer.bindPopup('<div id="foo"></div>').on('popupopen', function (e) {
@@ -176,36 +173,22 @@ d3.json(reExportURL).then(function(data) {
 });
 
 
-
+// control the legend on/off  when user clicking the layers
 function legendControl(legend, titleName){
+  // adding legened when toggle on the layer
   finalMap.on("overlayadd", function(event){
     if (event.name == titleName){
       legend.addTo(finalMap);
     }
-  
   });
   
+  // remove legened when toggle off the layer
   finalMap.on("overlayremove", function(event){
     if (event.name == titleName){
       finalMap.removeControl(legend);
     }
   });
 }
-
-
-// finalMap.on("overlayadd", function(event){
-//   if (event.name == "Total Production"){
-//     productionLegend.addTo(finalMap);
-//   }
-
-// });
-
-// finalMap.on("overlayremove", function(event){
-//   if (event.name == "Total Production"){
-//     finalmap.removeControl(productionLegend);
-//   }
-// });
-
 
 
  
@@ -218,6 +201,7 @@ function exportgraph (data, country) {
     name: "Total Production",
     line: {color: "#174FBF", width: 3},
     marker: {color:"#174FBF", size: 6}}; // production line
+
   var exportLine = {
     x: data.Export.years,
     y: data.Export.values,
@@ -225,6 +209,7 @@ function exportgraph (data, country) {
     name: "Export",
     line: {color: "#FFA019", width: 3},
     marker: {color:"#FFA019", size: 6}}; // export line
+
   var layout =  {width: 600, height: 450, title: country, margin:{l:30, r:30, b: 30, t:70},
     yaxis: {automargin: true, title:{text: "Thousands 60kg bags",standoff: 5}, constraintoward: "bottom"}, 
     xaxis: {automargin: true, title:{text: "Years", standoff: 5}, constraintoward: "left"}};
@@ -233,23 +218,28 @@ function exportgraph (data, country) {
 }
 
 function importgraph (data, country) {
+  // import line
   var importLine = {
     x: data.Import.years,
     y: data.Import.values,
     mode: "lines+markers",
     name: "Import",
     line: {color: "#17771E", width: 3},
-    marker: {color:"#17771E", size: 6}}; // import line
+    marker: {color:"#17771E", size: 6}}; 
+  
+  // reexport line
   var reExportLine = {
     x: data.ReExport.years,
     y: data.ReExport.values,
     mode: "lines+markers",
     name: "Re-Export",
-    line: {color: "#BC2E2E", width: 3},
-    marker: {color:"#BC2E2E", size: 6}}; // reexport line
+    line: {color: "#BC2E2E", width: 3}, 
+    marker: {color:"#BC2E2E", size: 6}}; 
+
   var layout =  {width: 600, height: 450, title: country, margin:{l:30, r:30, b: 30, t:70},
                 yaxis: {automargin: true, title:{text: "Thousands 60kg bags",standoff: 5}, constraintoward: "bottom"}, 
                 xaxis: {automargin: true, title:{text: "Years", standoff: 5}, constraintoward: "left"}};
+
   // trying with there is consumption data, if not, then only plot the import and reexport data
   try {
     var ConsumptionLine = {
@@ -298,8 +288,6 @@ function legend(choroplethGraph, unitName, titleName, steps, roundNum) {
       // div.innerHTML += "<ul>" + labels.join("") + "</ul>";
       return div;
   };
-
-// // adding legend layer on to the map
-// legend.addTo(layerName); 
+ 
   return legend;
 };
